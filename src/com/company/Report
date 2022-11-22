@@ -1,0 +1,21 @@
+A situation where you would find concurrency is station. At the station there are multiple trains which are picking up
+people from the train station. In other words, the concurrency is the amount of train pick up passengers.
+
+Concurrency is needed in this situation as it will allow for more people to be transported to another station.
+This is because trains are not waiting for other trains to come into the station.
+
+An issue in our program could be that multiple trains simultaneously stop at the station and pick people up, causing
+there to be a race condition. It could also be that, when all tracks are occupied, that one of the trains has to wait.
+In the case of signaling and planning not being done accordingly in the program, a train can be waiting to come into
+the station, but never receiving the signal to come in, as the train that gave the signal had already departed.
+
+******In the case of a deadlock where trains are waiting for eachother causing a loop, we initiate a while loop from the
+station itself! This call every now and then and check if the tracks are empty, making it so the train doesn’t have
+to wait more than needed.
+
+As for the race condition problem we make it so that the passengers on the station are treated as mutual exclusion,
+meaning that only one track (thread) can access this variable at the time. We do this by encompassing the variable
+in the synchronized method.
+
+****There won’t be starvation in our application as the amount of trains coming in compared to the tracks will make it
+so there can be a que. Trains also do not have higher priority over each other.
